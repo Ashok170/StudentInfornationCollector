@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <center>
+        <form action="">
+            <table border="2px">
+                <tr>
+                    <th>Name</th>
+                    <td> <input id="name" type="text"></td>
+                </tr>
+                <tr>
+                    <th>Age</th>
+                    <td><input id="age" type="number"></td>
+                </tr>
+                <tr>
+                    <th>Gender</th>
+                    <td> <input type="radio" name="gender" value="male" onclick="getRadioButtonValue(this)"> Male
+                        <input type="radio" name="gender" value="Female" onclick="getRadioButtonValue(this)">Female
+                    </td>
+                </tr>
+                <tr>
+                    <th>Course</th>
+                    <td>
+                        <select id="dropDown">
+                            <option value="Javascript">JavaScript</option>
+                            <option value="java">JAVA</option>
+                            <option value="SQL">SQL</option>
+                            <option value="HTML">HTML</option>
+                            <option value="CSS">CSS</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>EMail</th>
+                    <td><input type="email" id="email" placeholder="@email.com"></td>
+                </tr>
+                <tr>
+                    <th colspan="2"><BUtton onclick="save(event)">Save</BUtton></th>
+                </tr>
+            </table>
+            <table border="1" id="dataTable">
+                <tr>
+                    <th>NAME</th>
+                    <th>AGE</th>
+                    <th>Course</th>
+                    <th>GENDER</th>
+                    <th>EMail</th>
+                    <th>ACtion</th>
+                </tr>
+            </table>
+        </form>
+    </center>
+</body>
+<script>
+
+    var gender;
+    function getRadioButtonValue(radioButton) {
+        gender = radioButton.value;
+        console.log(radioButton.value)
+    }
+    function save(event) {
+        event.preventDefault();
+        var name = document.getElementById("name").value;
+        var Age = document.getElementById("age").value;
+        var Course = document.getElementById("dropDown").value;
+        var email = document.getElementById("email").value;
+
+        //creating new row
+        var row = document.createElement("tr")
+
+        //adding new cel
+        var Namecell = document.createElement('td');
+        Namecell.textContent = name;
+        row.appendChild(Namecell);
+
+        var AgeCell = document.createElement('td');
+        AgeCell.textContent = Age;
+        row.appendChild(AgeCell);
+
+        var Coursecell = document.createElement('td');
+        Coursecell.innerHTML = Course;
+        row.appendChild(Coursecell);
+        var gendercell = document.createElement('td');
+        gendercell.textContent =gender;
+        row.appendChild(gendercell);
+        var emailCell = document.createElement('td');
+        emailCell.textContent = email;
+        row.appendChild(emailCell);
+
+        var actionCell = document.createElement('td');
+        var deletebutn = document.createElement("button");
+        deletebutn.innerText = "Delete";
+        deletebutn.style.backgroundColor="red";
+        deletebutn.onclick = function () {
+            row.remove();
+        };
+        actionCell.appendChild(deletebutn);
+        row.appendChild(actionCell);
+        document.getElementById("dataTable").append(row)
+
+
+
+    };
+
+</script>
+
+</html>
